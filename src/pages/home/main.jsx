@@ -7,6 +7,7 @@ import SwiperPage from "./swiper";
 import Video from "./video";
 import About from "./about";
 import Details from "./details";
+import Social from "./social";
 
 export default function HomePage() {
   return (
@@ -19,6 +20,7 @@ export default function HomePage() {
         <Video />
         <About />
         <Details />
+        <Social />
       </main>
       <Footer />
     </>
