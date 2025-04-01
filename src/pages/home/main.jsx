@@ -17,12 +17,12 @@ export default function HomePage() {
         <Hero />
         <Techniques />
         <SwiperPage />
-        <Video />
+        {/* <Video />
         <About />
         <Details />
-        <Social />
+        <Social /> */}
       </main>
-      <Footer />
+      {/* <Footer /> */}
     </>
   );
 }

@@ -42,23 +42,17 @@ export default function SwiperPage() {
   const nextRef = useRef(null);
 
   return (
-    <div className="mx-20 mt-20">
-      <div className="flex items-center justify-between pb-10">
-        <p className="text-5xl font-semibold uppercase animation">
+    <div className="mx-5 md:mx-20 mt-5">
+      <div className="flex items-center justify-between pb-7">
+        <p className="text-xl md:text-3xl font-semibold uppercase animation">
           <span>Флагманы</span>{" "}
-          <span className="text-sm -translate-y-6 inline-block">(4)</span>
+          <span className="text-sm -translate-y-2 md:-translate-y-4 opacity-80 inline-block">(4)</span>
         </p>
         <div className="flex gap-5">
-          <button
-            ref={prevRef}
-            className="swiper-btn"
-          >
+          <button ref={prevRef} className="swiper-btn">
             <ChevronLeft />
           </button>
-          <button
-            ref={nextRef}
-            className="swiper-btn"
-          >
+          <button ref={nextRef} className="swiper-btn">
             <ChevronRight />
           </button>
         </div>
@@ -67,10 +61,21 @@ export default function SwiperPage() {
         modules={[Navigation]}
         spaceBetween={30}
         loop={true}
-        slidesPerView={3}
+        slidesPerView={1}
         navigation={{
           prevEl: prevRef.current,
           nextEl: nextRef.current,
+        }}
+        breakpoints={{
+          640: {
+            slidesPerView: 2
+          },
+          900: {
+            slidesPerView: 3
+          },
+          1200: {
+            slidesPerView: 4
+          },
         }}
         pagination={{ clickable: true }}
         onInit={(swiper) => {
@@ -86,7 +91,7 @@ export default function SwiperPage() {
             key={item.id}
             className="border-[#dedede] border rounded-[20px] cursor-pointer hover:bg-red-400"
             style={{
-              height: "500px",
+              height: "350px",
               width: "100%",
             }}
           >

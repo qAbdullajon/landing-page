@@ -1,8 +1,27 @@
-import { Dropdown, Space } from "antd";
-import { ArrowDown, ChevronDown, Phone, Search } from "lucide-react";
-import React from "react";
+import { Drawer, Dropdown, Space } from "antd";
+import { ChevronDown, Menu, Phone, Search, X } from "lucide-react";
+import React, { useState } from "react";
+import styled from "styled-components";
+
+const DrawerStyled = styled(Drawer)`
+  background-color: #1e1e1e !important;
+  color: white;
+  height: calc(100vh - 72px) !important;
+  top: 72px !important;
+  position: relative;
+  .ant-drawer-body {
+    padding: 0;
+  }
+`;
 
 export default function Header() {
+  const [open, setOpen] = useState(false);
+  const showDrawer = () => {
+    setOpen(true);
+  };
+  const onClose = () => {
+    setOpen(false);
+  };
   const items = [
     {
       label: <a href="#">Русский</a>,
@@ -15,28 +34,9 @@ export default function Header() {
   ];
 
   return (
-    <div className="">
-      <div className="px-20 bg-[#1E1E1E] h-10 flex items-center justify-between">
-        <div className="hover:bg-[#2A2A2A]">
-          <a
-            href="tel:998906307705"
-            className="text-white flex items-center gap-2 text-[12px] transition-all duration-300 ease-linear cursor-pointer h-10 hover:px-4"
-          >
-            <Phone color="white" size={16} />
-            <span>998 90 123 45 67</span>
-          </a>
-        </div>
-        <Dropdown menu={{ items }} trigger={["click"]}>
-          <a className="hover:bg-[#2A2A2A]" onClick={(e) => e.preventDefault()}>
-            <Space className="text-white text-[12px] transition-all duration-300 ease-linear cursor-pointer h-10 hover:px-4 uppercase">
-              O'zbekcha
-              <ChevronDown />
-            </Space>
-          </a>
-        </Dropdown>
-      </div>
-      <div className="sticky top-0 px-20 flex items-center justify-between h-[72px] w-full">
-        <nav className="h-full flex items-center gap-5 hover:text-gray-400">
+    <>
+      <div className="sticky top-0 px-10 md:px-20 flex items-center justify-between h-[72px] w-full bg-[#1e1e1e] md:bg-white z-[50]">
+        <nav className="h-full hidden md:flex items-center gap-5">
           <a href="#" className="nav_link">
             Каталог
           </a>
@@ -49,13 +49,13 @@ export default function Header() {
         </nav>
         <div>
           <button
-            className="uppercase font-bold text-2xl"
+            className="uppercase font-bold text-2xl text-white md:text-black"
             style={{ fontFamily: "cursive" }}
           >
             Beston
           </button>
         </div>
-        <div className="flex items-center gap-5">
+        <div className="hidden md:flex items-center gap-5">
           <a href="#" className="nav_link">
             Дилеры
           </a>
@@ -66,7 +66,80 @@ export default function Header() {
             <Search size={18} />
           </button>
         </div>
+
+        <button className="cursor-pointer text-white p-2 rounded-lg shadow-lg block md:hidden">
+          {!open ? (
+            <Menu onClick={() => setOpen(true)} size={24} />
+          ) : (
+            <X size={24} onClick={() => setOpen(false)} />
+          )}
+        </button>
       </div>
-    </div>
+
+      {/* Drawer */}
+      <DrawerStyled
+        placement="top"
+        closable={false}
+        onClose={onClose}
+        open={open}
+        className="!z-[10]"
+        mask={false}
+      >
+        <div className="">
+          <div className="border-b-1 pb-3">
+            <div className="bg-black mx-2 flex items-center rounded-[12px] gap-2 py-2 px-3">
+              <Search size={17} color="#86868b" />
+              <input
+                className="text-lg py-1 outline-none w-full"
+                type="text"
+                placeholder="Поиск по сайту"
+              />
+            </div>
+          </div>
+          <ul className="flex flex-col px-5">
+            <li className="py-4 border-b border-[#545252]">
+              <a className="text-base !text-white" href="#">
+                Холодильники
+              </a>
+            </li>
+            <li className="py-4 border-b border-[#545252]">
+              <a className="text-base !text-white" href="#">
+                Микроволноки
+              </a>
+            </li>
+            <li className="py-4 border-b border-[#545252]">
+              <a className="text-base !text-white" href="#">
+                Пылесосы
+              </a>
+            </li>
+            <li className="py-4 border-b border-[#545252]">
+              <a className="text-base !text-white" href="#">
+                Мелкая техника
+              </a>
+            </li>
+            <li className="py-4 border-b border-[#545252]">
+              <a className="text-base !text-white" href="#">
+                О компании
+              </a>
+            </li>
+            <li className="py-4 border-b border-[#545252]">
+              <a className="text-base !text-white" href="#">
+                Сервис
+              </a>
+            </li>
+            <li className="py-4 border-b border-[#545252]">
+              <a className="text-base !text-white" href="#">
+                Вакансии
+              </a>
+            </li>
+            <li className="py-4 border-b border-[#545252]">
+              <a className="text-base !text-white" href="#">
+                Контакты
+              </a>
+            </li>
+          </ul>
+        </div>
+      </DrawerStyled>
+    </>
   );
 }
