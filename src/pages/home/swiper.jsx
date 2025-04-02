@@ -1,11 +1,11 @@
-import React, { useRef } from "react";
+import React, { lazy, useRef } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import { ChevronLeft, ChevronRight } from "lucide-react";
-import Sw1 from "../../assets/sw1.png";
+const Sw1 = lazy(() => import("../../assets/sw1.png"));
 import Sw2 from "../../assets/sw2.png";
 import Sw3 from "../../assets/sw3.png";
 import Sw4 from "../../assets/sw4.png";
@@ -46,7 +46,9 @@ export default function SwiperPage() {
       <div className="flex items-center justify-between pb-7">
         <p className="text-xl md:text-3xl font-semibold uppercase animation">
           <span>Флагманы</span>{" "}
-          <span className="text-sm -translate-y-2 md:-translate-y-4 opacity-80 inline-block">(4)</span>
+          <span className="text-sm -translate-y-2 md:-translate-y-4 opacity-80 inline-block">
+            (4)
+          </span>
         </p>
         <div className="flex gap-5">
           <button ref={prevRef} className="swiper-btn">
@@ -68,13 +70,13 @@ export default function SwiperPage() {
         }}
         breakpoints={{
           640: {
-            slidesPerView: 2
+            slidesPerView: 2,
           },
           900: {
-            slidesPerView: 3
+            slidesPerView: 3,
           },
           1200: {
-            slidesPerView: 4
+            slidesPerView: 4,
           },
         }}
         pagination={{ clickable: true }}

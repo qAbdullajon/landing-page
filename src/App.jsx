@@ -1,24 +1,32 @@
-import React from "react";
-import HomePage from "./pages/home/main";
-import { MainAbout } from "./pages/about/Main";
-import { MainLayout } from "./layout/MainLayout";
+import React, { Suspense, lazy } from "react";
 import { Route, Routes } from "react-router-dom";
-import { ContactMain } from "./pages/contacts/Main";
-import { DealersPage } from "./pages/dilers/Main";
-import { ServicesPage } from "./pages/services/Main";
+import { MainLayout } from "./layout/MainLayout";
+import { Spin } from "antd";
+import { LoaderCircle } from "lucide-react";
+
+// Sahifalarni dinamik yuklash
+const HomePage = lazy(() => import("./pages/home/main"));
+const MainAbout = lazy(() => import("./pages/about/Main"));
+const ContactMain = lazy(() => import("./pages/contacts/Main"));
+const DealersPage = lazy(() => import("./pages/dilers/Main"));
+const ServicesPage = lazy(() => import("./pages/services/Main"));
 
 export default function App() {
+  const loadingIcon = <LoaderCircle className="animate-spin" color="black" size={36} />;
+
   return (
-    <>
+    <Suspense fallback={<div className="w-full h-screen flex items-center justify-center">
+      <Spin size="large" indicator={loadingIcon} />
+    </div>}>
       <Routes>
         <Route element={<MainLayout />}>
           <Route path="/" element={<HomePage />} />
           <Route path="/about" element={<MainAbout />} />
           <Route path="/contacts" element={<ContactMain />} />
-          <Route path="/dealers" element={<DealersPage />} /> 
+          <Route path="/dealers" element={<DealersPage />} />
           <Route path="/services" element={<ServicesPage />} />
         </Route>
       </Routes>
-    </>
+    </Suspense>
   );
 }

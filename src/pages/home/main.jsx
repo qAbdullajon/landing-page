@@ -1,18 +1,21 @@
-import React from "react";
-import Video from "./video";
-import About from "./about";
-import Details from "./details";
-import SwiperPage from "./swiper";
-import Techniques from "./techniques";
+import React, { Suspense, lazy } from "react";
+
+const Video = lazy(() => import("./video"));
+const About = lazy(() => import("./about"));
+const Details = lazy(() => import("./details"));
+const SwiperPage = lazy(() => import("./swiper"));
+const Techniques = lazy(() => import("./techniques"));
 
 export default function HomePage() {
   return (
     <main>
-      <Techniques />
-      <SwiperPage />
-      <Video />
-      <About />
-      <Details />
+      <Suspense fallback={<div>Yuklanmoqda...</div>}>
+        <Techniques />
+        <SwiperPage />
+        <Video />
+        <About />
+        <Details />
+      </Suspense>
     </main>
   );
 }

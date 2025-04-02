@@ -4,7 +4,6 @@ import { createRoot } from "react-dom/client";
 import { BrowserRouter } from "react-router-dom";
 import Lenis from "@studio-freight/lenis"; // ✅ To‘g‘ri import
 
-// Lenis instance yaratamiz
 const lenis = new Lenis();
 
 function raf(time) {
