@@ -53,7 +53,7 @@ export default function Header() {
           </a>
         </Dropdown>
       </div>
-      <div className="sticky top-0 px-5 md:px-20 flex items-center justify-between h-[72px] w-full bg-white">
+      <div className="sticky top-0 px-5 md:px-20 flex items-center justify-between h-[72px] bg-white z-[100]">
         <nav className="h-full hidden md:flex items-center gap-5 hover:text-gray-400">
           <Link className="nav_link" to="/about">
             О компании
@@ -79,8 +79,8 @@ export default function Header() {
             Контакты
           </Link>
         </div>
-        <div>
-          <button className="cursor-pointer text-white p-2 rounded-lg shadow-lg block md:hidden">
+        <div className="md:hidden block">
+          <button className="cursor-pointer text-white p-2 rounded-lg shadow-lg">
             {!open ? (
               <Menu color="black" onClick={() => setOpen(true)} size={24} />
             ) : (
